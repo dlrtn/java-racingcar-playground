@@ -20,6 +20,12 @@ public class StringAddCalculator {
 
         int[] numbers = convertToIntArray(strings);
 
+        for (int number : numbers) {
+            if (number < 0) {
+                throw new RuntimeException();
+            }
+        }
+
         return sum(numbers);
     }
 
