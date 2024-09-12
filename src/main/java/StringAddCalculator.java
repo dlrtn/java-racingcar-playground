@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class StringAddCalculator {
 
-    private static ArrayList<String> delimiters = new ArrayList<>(Arrays.asList(",", ":"));
+    private static final ArrayList<String> delimiters = new ArrayList<>(Arrays.asList(",", ":"));
 
     public static int splitAndSum(String string) {
         if (isValidString(string)) {
@@ -13,9 +13,7 @@ public class StringAddCalculator {
         }
 
         if (checkCustomDelimiter(string)) {
-            registerCustomDelimiter(string);
-
-            string = string.substring(4);
+            string = registerCustomDelimiter(string);
         }
 
         String[] strings = split(string);
