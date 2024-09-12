@@ -7,29 +7,33 @@ public class StringAddCalculator {
             return 0;
         }
 
-        int[] numbers = splitAndConvertToIntArray(string);
+        String[] strings = split(string);
+
+        int[] numbers = convertToIntArray(strings);
 
         return sum(numbers);
     }
 
-    private static int sum(int[] numbers) {
-        int sum = 0;
-
-        for (int number : numbers) {
-            sum += number;
-        }
-
-        return sum;
+    private static boolean isValidString(String string) {
+        return string == null || string.isEmpty();
     }
 
-    private static int[] splitAndConvertToIntArray(String string) {
-        return Arrays.stream(string.split("[,:]"))
+    private static int sum(int[] numbers) {
+        return Arrays.stream(numbers).sum();
+    }
+
+    private static String[] split(String string) {
+        return string.split(getDelimiter());
+    }
+
+    private static int[] convertToIntArray(String[] strings) {
+        return Arrays.stream(strings)
                 .mapToInt(Integer::parseInt)
                 .toArray();
     }
 
-    private static boolean isValidString(String string) {
-        return string == null || string.isEmpty();
+    private static String getDelimiter() {
+        return "[,|:]";
     }
 
 }
