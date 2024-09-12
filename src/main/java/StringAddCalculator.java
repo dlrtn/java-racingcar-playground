@@ -5,7 +5,11 @@ public class StringAddCalculator {
             return 0;
         }
 
-        return Integer.parseInt(string);
+        int sum = 0;
+
+        sum += Integer.parseInt(string);
+
+        return sum;
     }
 
 }
