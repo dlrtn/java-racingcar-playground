@@ -23,7 +23,7 @@ public class StringAddCalculator {
     }
 
     private static int[] splitAndConvertToIntArray(String string) {
-        return Arrays.stream(string.split(","))
+        return Arrays.stream(string.split("[,:]"))
                 .mapToInt(Integer::parseInt)
                 .toArray();
     }
