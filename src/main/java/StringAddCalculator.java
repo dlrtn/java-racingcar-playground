@@ -8,11 +8,11 @@ public class StringAddCalculator {
     private static final ArrayList<String> delimiters = new ArrayList<>(Arrays.asList(",", ":"));
 
     public static int splitAndSum(String string) {
-        if (isValidString(string)) {
+        if (isEmptyOrNull(string)) {
             return 0;
         }
 
-        if (checkCustomDelimiter(string)) {
+        if (isContainsCustomDelimiter(string)) {
             string = registerCustomDelimiter(string);
         }
 
@@ -33,11 +33,11 @@ public class StringAddCalculator {
         }
     }
 
-    private static boolean isValidString(String string) {
+    private static boolean isEmptyOrNull(String string) {
         return string == null || string.isEmpty();
     }
 
-    private static boolean checkCustomDelimiter(String string) {
+    private static boolean isContainsCustomDelimiter(String string) {
         return string.startsWith("//");
     }
 
