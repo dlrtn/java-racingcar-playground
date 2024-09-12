@@ -1,10 +1,21 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringAddCalculator {
+
+    private static ArrayList<String> delimiters = new ArrayList<>(Arrays.asList(",", ":"));
 
     public static int splitAndSum(String string) {
         if (isValidString(string)) {
             return 0;
+        }
+
+        if (checkCustomDelimiter(string)) {
+            registerCustomDelimiter(string);
+
+            string = string.substring(4);
         }
 
         String[] strings = split(string);
@@ -18,12 +29,29 @@ public class StringAddCalculator {
         return string == null || string.isEmpty();
     }
 
-    private static int sum(int[] numbers) {
-        return Arrays.stream(numbers).sum();
+    private static boolean checkCustomDelimiter(String string) {
+        return string.startsWith("//");
+    }
+
+    private static String registerCustomDelimiter(String string) {
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(string);
+
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            delimiters.add(customDelimiter);
+
+            return m.group(2);
+        }
+
+        return string;
     }
 
     private static String[] split(String string) {
         return string.split(getDelimiter());
+    }
+
+    private static String getDelimiter() {
+        return String.join("|", delimiters);
     }
 
     private static int[] convertToIntArray(String[] strings) {
@@ -32,8 +60,8 @@ public class StringAddCalculator {
                 .toArray();
     }
 
-    private static String getDelimiter() {
-        return "[,|:]";
+    private static int sum(int[] numbers) {
+        return Arrays.stream(numbers).sum();
     }
 
 }
