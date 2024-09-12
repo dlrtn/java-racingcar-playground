@@ -4,7 +4,8 @@ public class StringAddCalculator {
         if (string == null || string.isEmpty()) {
             return 0;
         }
-        return -1;
+
+        return Integer.parseInt(string);
     }
 
 }
