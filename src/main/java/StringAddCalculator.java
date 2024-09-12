@@ -20,13 +20,17 @@ public class StringAddCalculator {
 
         int[] numbers = convertToIntArray(strings);
 
+        throwRuntimeExceptionIfNegativeNumberContains(numbers);
+
+        return sum(numbers);
+    }
+
+    private static void throwRuntimeExceptionIfNegativeNumberContains(int[] numbers) {
         for (int number : numbers) {
             if (number < 0) {
                 throw new RuntimeException();
             }
         }
-
-        return sum(numbers);
     }
 
     private static boolean isValidString(String string) {
