@@ -7,7 +7,11 @@ public class StringAddCalculator {
 
         int sum = 0;
 
-        sum += Integer.parseInt(string);
+        String[] strings = string.split(",");
+
+        for (String s : strings) {
+            sum += Integer.parseInt(s);
+        }
 
         return sum;
     }
